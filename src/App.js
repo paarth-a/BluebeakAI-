@@ -9,10 +9,16 @@ const Styles = styled.div`
 
   table {
     border-spacing: 0;
-    border: 1px solid black;
+    border-bottom: 0;
+      border-right: 0;
+      border-collapse: collapse;
+
 
     tr {
       :last-child {
+        border-bottom:0;
+        border-right:0;
+
         td {
           border-bottom: 0;
         }
@@ -21,30 +27,52 @@ const Styles = styled.div`
     
 
     th{
-      color: red;
-      :state(foo){
-        color: grey;
-      }
+      border-bottom: 2px solid hsl(0, 0%, 90%);
+  border-left-width: 1px;
+  border-left-color: rgba(0, 0, 0, 0.05);
+  background-color: ${({ clicked }) => clicked ? 'gray' : 'transparent'};
 
-
-    },
+    :visited{
+      background-color: yellow;
+    }
+    :focus{
+      background-color:yellow;
+    }
+    :hover {
+        background-color: #f0f0f0;
+    }
+    :active {
+      background-color: yellow;
+    }
+  },
     td {
       
-      margin: 0;
-      padding: 0.5rem;
-      border-bottom: 1px solid black;
-      border-right: 1px solid black;
-
+      
+      border-top: 1px solid hsl(0, 0%, 95%);
+      border-left-width: 1px;
+      border-left-color: rgba(0, 0, 0, 0.05);
 
       :last-child {
         border-right: 0;
+          tr{
+                  border-bottom:0;
+                }
+        
+
       }
+     
+     
+    }
+
 
     }
     columns{
       font-style: italic;
       
 
+    }
+    tbody > tr:last-child > td {
+      border-bottom: 0;
     }
   }
 `
@@ -88,11 +116,15 @@ function Table({ columns, data }) {
                   {column.render('Header')}
                   {/* Add a sort direction indicator */}
                   <span>
+                  <div onclick="alert('hello');">
+
                     {column.isSorted
                       ? column.isSortedDesc
-                        ? ' 🔽'
-                        : ' 🔼'
+                        ? this.this.setState({ clicked: true })
+                        : this.this.setState({ clicked: true })
                       : ''}
+                      </div>
+
                   </span>
                  
              </div2>   </th> 
